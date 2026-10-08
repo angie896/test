@@ -38,14 +38,21 @@ Lee primero `references/reglas.md` (la base de Angie). Después:
 Escribe el JSON (`references/esquema_propuesta.md`) y corre:
 
 ```bash
-python scripts/build_board.py propuesta.json PROPUESTA_<UNIDAD>.html
+python scripts/build_board.py propuesta.json PROPUESTA_<UNIDAD>.html --desglose desglose.json
 ```
 
-El tablero muestra arriba los pendientes ⚠, tiene swatches de paleta, links a los referentes,
-botones para copiar búsquedas y prompts, y modo claro/oscuro.
+La página tiene pestañas (desglose y propuesta visual), los pendientes ⚠ arriba, franjas de
+paleta, links a los referentes, botones para copiar búsquedas y prompts, y modo claro/oscuro.
+
+**Angie quiere VER la página, no el código.** Siempre muéstrasela renderizada:
+- En la app de Claude: publícala como **Artifact** (página visual) o muéstrala con la vista
+  previa de HTML. Nunca le entregues solo el archivo `.html` ni el JSON para que los abra.
+- Si solo se puede entregar un archivo, genéralo con `--standalone` y dile que lo abra con
+  doble clic en el navegador.
+- El JSON es interno (sirve para iterar): no se lo muestres a menos que lo pida.
 
 ## 3. Entregar
-- El HTML, y el JSON junto a él para iterar.
+- La página visual renderizada (ver arriba). Guarda el JSON por tu lado para iterar.
 - En el chat: un resumen corto y la lista de ⚠ pendientes. No repitas los prompts en el chat:
   ya están en el tablero.
 - Proponer el siguiente paso: cuando Angie apruebe imágenes FINAL, sus paletas y su luz se

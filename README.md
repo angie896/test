@@ -1,5 +1,7 @@
 # Caja de herramientas de Angie Vélez: dirección de arte con IA
 
+👉 **Versión visual (para ver, no para editar):** https://claude.ai/artifact/87QwxvekksAH3VBKaoeSpD
+
 Skills, prompts y plantillas para preproducción de arte. Sirve para cualquier proyecto
 (serie, corto, largo, videoclip, comercial o videojuego), no solo para un estudio.
 

@@ -71,7 +71,9 @@ python scripts/build_breakdown.py desglose.json BREAKDOWN_<UNIDAD>.xlsx --tracki
 - REFERENCE y FINAL **siempre vacías**: ahí Angie pega imágenes.
 
 ## 6. Entregar
-1. El `.xlsx`.
+1. El `.xlsx` (lo abre en Excel o Google Sheets). Si además quiere verlo en pantalla, genera
+   la página visual con la skill `propuesta-visual` (pestaña Desglose). **No le muestres el
+   JSON ni código**: es interno.
 2. Un resumen corto: cuántos ítems por categoría, lista de todos los ⚠ pendientes y qué
    escenas fusionaste.
 3. Ofrecer el siguiente paso: **propuesta visual** (skill `propuesta-visual`), que toma este
