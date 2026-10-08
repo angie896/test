@@ -1,8 +1,23 @@
-# Sistema de trabajo de Angie Vélez: propuesta v0.1
+# Sistema de trabajo de Angie Vélez: propuesta v0.2
 
 > Documento vivo. Lo armó Claude desde el punto de vista de un director de arte o productor
-> senior. Es para leerlo, tachar, reordenar y volver a pedir cambios. Nada de esto está
-> construido todavía: primero van las preguntas (sección 6).
+> senior. Es para leerlo, tachar, reordenar y volver a pedir cambios.
+
+## Estado (v0.2)
+
+| Pieza | Estado |
+|---|---|
+| A1 Base personal (`00_BASE/reglas.md`) | ✅ v1 |
+| A2 Skill desglose de arte | ✅ v1, calibrada con el par de oro del EP42 |
+| Propuesta visual con referentes reales (nueva, la pidió Angie) | ✅ v1 con un ejemplo del EP42 |
+| A3 Biblia de continuidad | ⏭ siguiente |
+| A5 Character sheets, A7 QA | pendiente |
+
+**Respuestas de Angie (v0.2):** las reglas son suyas (el documento de "Lau" venía de otra
+persona que usa la misma cuenta). Lo que más tiempo le toma es **definir el look e iterar
+prompts**, así que la propuesta visual subió de prioridad. Referentes **siempre reales**. Quiere
+aprender production design y fotografía, por eso cada propuesta trae una nota "por qué". Todo
+tiene que adaptarse a cualquier tipo de proyecto y servirle fuera del estudio.
 
 ---
 
@@ -16,9 +31,6 @@
 - Tu objetivo es **menos tiempo mecánico y más tiempo de criterio**. También quieres
   herramientas que **sean tuyas** y que te sirvan fuera de Dead Camera.
 
-> ⚠️ El documento de contexto que adjuntaste habla de **"Lau"**, fundadora y directora
-> creativa. Tú eres **Angie**, directora de arte. Antes de construir nada tengo que saber qué
-> reglas de ese documento son tuyas y cuáles son de Laura o del estudio (ver pregunta 1).
 
 ---
 

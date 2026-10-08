@@ -1,0 +1,58 @@
+{
+  "project": {"title": "SWIPE RIGHT", "type": "serie", "unit": "EP42", "unit_title": "THE DEADLINE"},
+  "options": {"tracking": false, "scenes": true},
+  "sheets": [
+    {
+      "name": "EP42",
+      "title": "BREAKDOWN EP42 — THE DEADLINE",
+      "items": [
+        {
+          "category": "SETS",
+          "item": "Int. Sofia's command center",
+          "scenes": "169, 170",
+          "description": "Noche, sin ventanas. Luz azul de los server racks que recorren todas las paredes. Pantallas apiladas de 3 en 3 mostrando flujos de números. 3 ingenieros trabajando en una terminal con el HSM cableado. Varios escritorios con sillas.\n- versión LATER (170): reloj de pared marcando las 3 AM, silla al lado de la puerta donde uno de los guardias duerme sentado, tazas de café vacías y un plato de comida sin tocar junto a la terminal de Wyatt"
+        },
+        {
+          "category": "CHARACTERS",
+          "item": "Sofia",
+          "scenes": "169",
+          "description": "⚠ vestuario no especificado en el guion: definir continuidad"
+        },
+        {"category": "CHARACTERS", "item": "Engineers (3)", "scenes": "169"},
+        {
+          "category": "CHARACTERS",
+          "item": "Sofia's henchman 01",
+          "scenes": "169, 170",
+          "description": "- versión dormido sentado en una silla junto a la puerta (170)"
+        },
+        {"category": "CHARACTERS", "item": "Sofia's henchman 02", "scenes": "169, 170"},
+        {
+          "category": "CHARACTERS",
+          "item": "Wyatt",
+          "scenes": "169, 170",
+          "description": "Nudillos partidos (golpeó a su hermano)\n⚠ vestuario no especificado en el guion: definir continuidad"
+        },
+        {
+          "category": "CHARACTERS",
+          "item": "Mike",
+          "scenes": "170",
+          "description": "Cinta sobre la nariz rota, pies descalzos, esta noche no lleva la ropa de lino\n⚠ ¿qué lleva puesto entonces? (¿pijama?)"
+        },
+        {"category": "PROPS", "item": "HSM", "scenes": "169", "description": "Cableado a la terminal"},
+        {"category": "PROPS", "item": "Tactical watch", "scenes": "170", "description": "En la muñeca de Wyatt, se ilumina"},
+        {
+          "category": "GRAPHIC DESIGN",
+          "item": "Screens",
+          "scenes": "169, 170",
+          "description": "- versión HANDSHAKE REJECTED en rojo (se repite)\n- versión barra de progreso REBUILDING 11% → 12%\n- pantalla contigua: mapa de enrutamiento, docenas de nodos, líneas que se cruzan, tráfico lento\n- mapa versión arreglado: nodos apagados, líneas rectas, número de latencia en la esquina bajando\n- flujos de números en las pantallas apiladas"
+        },
+        {
+          "category": "GRAPHIC DESIGN",
+          "item": "Tactical watch",
+          "scenes": "170",
+          "description": "Interfaz con dos puntos: Wyatt en las montañas afuera de Medellín, Colombia, y el de ella sobre el Pacífico moviéndose al este, hacia él. Debajo, ritmo cardíaco: 124\n⚠ el guion dice \"hers\": ¿Dixie? confirmar"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "_nota": "Transcripción del desglose manual de Angie del EP42 (par de oro). Sirve para calibrar el criterio del skill.",
+  "project": {"title": "SWIPE RIGHT", "type": "serie", "unit": "EP42"},
+  "options": {"tracking": false, "scenes": false},
+  "sheets": [
+    {
+      "name": "EP42",
+      "title": "BREAKDOWN EP42",
+      "items": [
+        {"category": "SETS", "item": "Int. Sofia's command center",
+         "description": "noche, sin ventanas, luz azul proveniente de los servidores que recorren todas las paredes, pantallas apiladas de 3 en 3 mostrando flujos de números, 3 ingenieros estan sentados trabajando, en pantalla se ve en rojo HANDSHAKE REJECTED, reloj de pared a las 3am, silla al lado de la puerta donde uno de los guardias se va a dormir, version adicional con tazas de café vacias y un plato de comida que wyatt no ha tocado"},
+        {"category": "CHARACTERS", "item": "Sofia", "description": "ropa blanca"},
+        {"category": "CHARACTERS", "item": "Engineers (3)"},
+        {"category": "CHARACTERS", "item": "Sofia's henchman 01"},
+        {"category": "CHARACTERS", "item": "Sofia's henchman 02"},
+        {"category": "CHARACTERS", "item": "Wyatt", "description": "con y sin bolso"},
+        {"category": "CHARACTERS", "item": "Mike", "description": "cinta en la nariz rota, pies descalzos, no lleva ropa de lino, pijama?"},
+        {"category": "PROPS", "item": "HSM"},
+        {"category": "PROPS", "item": "Tactical watch"},
+        {"category": "GRAPHIC DESIGN", "item": "screens",
+         "description": "-version donde dice \"HANDSHAKE REJECTED\"\n- version con una barra de progreso \"REBUILDING 11%\n\nEn la pantalla contigua hay otra interfaz, mapa de enrutamiento, docenas de nodos, lineas que se cruzan entre sí"},
+        {"category": "GRAPHIC DESIGN", "item": "Tactical watch",
+         "description": "interfaz con la ubicación de wyatt en colombia y la de dixie sobre el mar, yendo en dirección a él. Su bpm en 124"}
+      ]
+    }
+  ]
+}

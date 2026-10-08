@@ -1,0 +1,97 @@
+{
+  "project": {"title": "SWIPE RIGHT", "unit": "EP42", "unit_title": "THE DEADLINE", "type": "serie"},
+  "items": [
+    {
+      "category": "SETS",
+      "item": "Int. Sofia's command center",
+      "scenes": "169, 170",
+      "intent": "Un cuarto que se siente como una jaula tecnológica: sin ventanas, sin hora, iluminado solo por las máquinas. Wyatt está atrapado y el espacio no le da ninguna salida visual. En la versión LATER, el abandono (tazas vacías, comida intacta, un guardia dormido) muestra el agotamiento.",
+      "flags": [
+        "Ubicación: el guion dice que Wyatt está 'in the mountains outside Medellin'. Asumí que el command center está ahí; confirmar si es un búnker, una finca o una bodega.",
+        "Propuesta mía (no está en el guion): en la versión LATER, un acento cálido mínimo (pantalla de la terminal de Wyatt o una lámpara) para separarlo del resto del cuarto. Aprobar o descartar."
+      ],
+      "palette": [
+        {"hex": "#0B1220", "name": "negro azulado (sombras)", "pct": 60},
+        {"hex": "#1E6091", "name": "azul servidor", "pct": 30},
+        {"hex": "#D7263D", "name": "rojo HANDSHAKE REJECTED", "pct": 10}
+      ],
+      "lighting": "Luz 100 % motivada por fuentes prácticas: los LEDs de los racks dan la luz general en azul frío y los monitores dan relleno al rostro. Contraste alto, sombras profundas y un poco de bruma para que la luz se vea en el aire. En la 169 el rojo de la pantalla es el único color cálido y significa peligro. En la LATER (3 AM) el cuarto queda más oscuro y vacío.",
+      "camera": "Plate vacío (sin personajes) en vista 3/4 desde una esquina, para leer dos paredes de racks y la línea de escritorios. Altura de ojo y lente 24–35 mm para que se sienta el encierro sin deformar. Foco profundo, porque el plate es base de composición.",
+      "references": [
+        {"title": "Blackhat", "year": 2015, "credits": "Dir. Michael Mann · DP Stuart Dryburgh · PD Guy Hendrix Dyas",
+         "url": "https://en.wikipedia.org/wiki/Blackhat_(film)", "verified": true,
+         "take": "Thriller de ciberseguridad: estética de pantallas y espacios técnicos de noche. ⚠ Créditos verificados; falta confirmar en FilmGrab o Flim el fotograma exacto de cuarto de servidores."},
+        {"title": "Mr. Robot (serie)", "year": "2015–2019", "credits": "Creador Sam Esmail · DP Tod Campbell · PD Anastasia White",
+         "url": "https://www.pushing-pixels.org/?p=14007", "verified": true,
+         "take": "Espacios técnicos opresivos y composición descentrada que encierra al personaje. Muy útil para la lógica de luz de pantallas."},
+        {"title": "Ex Machina", "year": 2014, "credits": "Dir. Alex Garland · DP Rob Hardy",
+         "url": "https://britishcinematographer.co.uk/rob-hardy-bsc-ex-machina/", "verified": true,
+         "take": "Interiores sin ventanas y aislamiento tecnológico. Sirve como referente de 'jaula elegante', no de cartel."}
+      ],
+      "searches": ["server room blue light night", "control room monitors dark thriller", "data center cold blue haze", "hacker room screens red alert", "Blackhat 2015", "Mr. Robot"],
+      "prompts": [
+        {"label": "Plate base — esc. 169", "tool": "Nano Banana Pro / Imagen",
+         "text": "Cinematic environment plate, three-quarter view from a corner of the room, of a windowless clandestine command center at night, hidden in a rural compound in the mountains outside Medellín, Colombia. Server racks line every wall, their LED status lights casting a cold blue glow across the room. Rows of desks with computer monitors stacked three high, all streaming columns of numbers. One central terminal with a small hardware security module cabled into it; its main screen shows a red error message reading \"HANDSHAKE REJECTED\". Several office chairs, a simple wooden chair beside the metal door, a wall clock. Low ceiling with exposed cable trays, polished concrete floor reflecting blue light. Lighting motivated only by practical sources: blue server LEDs and monitor glow, deep shadows, light atmospheric haze. Color palette: 60% blue-black shadows (#0B1220), 30% cold server blue (#1E6091), 10% alarm red (#D7263D) only on the error screen. Eye-level camera, 28mm lens, deep focus, photorealistic, cinematic thriller look, high detail, empty room, no people."},
+        {"label": "Plate versión LATER — esc. 170", "tool": "Nano Banana Pro (editar desde el plate 169)",
+         "text": "Same windowless command center as the reference image, same three-quarter camera angle and layout, now at 3 AM. The wall clock reads 3:00. The room is darker and abandoned: most monitors dimmed, empty desks. At the central terminal: several empty coffee cups and a full plate of untouched food. Main screen now shows a progress bar reading \"REBUILDING 11%\"; the adjacent screen shows a complex routing map with dozens of nodes and crossing lines. The wooden chair beside the door is empty. Same cold blue server light from the racks, deeper shadows, light haze. Keep the color palette: blue-black shadows, cold server blue, no red. Photorealistic, cinematic thriller look, high detail, no people."}
+      ],
+      "mentor": "Luz motivada: en un set sin ventanas, cada luz tiene que tener una fuente que exista dentro del cuadro (racks, monitores). Eso hace creíble el espacio y le da a dirección una lógica clara para iluminar los planos. Paleta 60-30-10: el rojo funciona porque es escaso. Si aparece en más del 10 % de la imagen, pierde la fuerza de alarma. El plate se pide vacío porque los personajes se componen después; un plate con gente amarra poses y casting."
+    },
+    {
+      "category": "GRAPHIC DESIGN",
+      "item": "Screens",
+      "scenes": "169, 170",
+      "intent": "Las pantallas cuentan la historia sin diálogo: primero rechazo (rojo), después progreso lento (11 % → 12 %) y al final la competencia de Wyatt (el mapa que él ordena sin poder evitarlo).",
+      "flags": ["El texto exacto de la latencia no está en el guion: definir número inicial y final."],
+      "palette": [
+        {"hex": "#05080D", "name": "fondo de interfaz", "pct": 60},
+        {"hex": "#3FA7D6", "name": "líneas y datos", "pct": 30},
+        {"hex": "#D7263D", "name": "error / alerta", "pct": 10}
+      ],
+      "lighting": "Las pantallas son fuentes de luz en el set: el color de la UI define el color en la cara de los personajes. UI azul = cara azul; HANDSHAKE REJECTED = un golpe de rojo en la cara.",
+      "camera": "Generar cada gráfica en plano frontal y plano (flat, sin perspectiva) para insertar o hacer screen replacement. Aparte, una versión en 3/4 sobre el monitor para el plate.",
+      "references": [
+        {"title": "Mr. Robot (serie)", "year": "2015–2019", "credits": "Creador Sam Esmail · DP Tod Campbell",
+         "url": "https://www.pushing-pixels.org/?p=14007", "verified": true,
+         "take": "Pantallas de terminal sobrias y creíbles, sin el 'look hacker' de película genérica."}
+      ],
+      "searches": ["terminal UI error red", "network routing map interface nodes", "progress bar terminal dark UI", "NOC network operations center screens"],
+      "prompts": [
+        {"label": "UI 1 — HANDSHAKE REJECTED", "tool": "Nano Banana Pro",
+         "text": "Flat front-facing computer screen graphic, 16:9, dark terminal-style security software interface. Near-black background (#05080D), thin cyan data lines and small monospaced logs (#3FA7D6). In the center a bold red alert panel (#D7263D) with the text \"HANDSHAKE REJECTED\" in a clean monospaced font, with repeated failed attempt logs underneath. Realistic, minimal, functional UI design, no glossy sci-fi effects, crisp legible text, high resolution."},
+        {"label": "UI 2 — REBUILDING 11%", "tool": "Nano Banana Pro",
+         "text": "Flat front-facing computer screen graphic, 16:9, same dark terminal-style interface design system as the reference (near-black background, cyan monospaced text). Center: a thin horizontal progress bar labeled \"REBUILDING\" at 11%, with a small scrolling log of key reconstruction steps below. Realistic, minimal, functional UI design, crisp legible text, high resolution."},
+        {"label": "UI 3 — Routing map (antes)", "tool": "Nano Banana Pro",
+         "text": "Flat front-facing computer screen graphic, 16:9, dark network routing map interface: dozens of nodes connected by tangled crossing lines, slow traffic pulses moving along the lines, cyan and dim white on near-black background, a small latency readout in the top-right corner. Realistic network monitoring software, minimal, crisp, high resolution."},
+        {"label": "UI 4 — Routing map (después)", "tool": "Nano Banana Pro (editar desde UI 3)",
+         "text": "Same routing map interface as the reference image, same layout and colors, but several nodes are now switched off (dimmed grey), the remaining connection lines are straight and organized, traffic flows faster, and the latency readout in the corner shows a lower number. Crisp, high resolution."}
+      ],
+      "mentor": "En producción, las pantallas se diseñan como un sistema (mismo fondo, tipografía y colores) para que todas parezcan del mismo software. Por eso las UI 2–4 se piden 'same design system as the reference': generas la primera, la apruebas y las demás se derivan de ella."
+    },
+    {
+      "category": "GRAPHIC DESIGN",
+      "item": "Tactical watch",
+      "scenes": "170",
+      "intent": "El cliffhanger del episodio cabe en una pantalla de 4 cm: el punto de ella se mueve hacia él y su ritmo cardíaco (124) dice que está alterada. La gráfica tiene que leerse en un solo vistazo.",
+      "flags": ["El guion dice 'hers': asumí Dixie, confirmar.", "Definir el diseño del reloj físico (PROPS) antes de generar la interfaz encima."],
+      "palette": [
+        {"hex": "#000000", "name": "pantalla OLED", "pct": 60},
+        {"hex": "#E8E8E8", "name": "mapa / texto", "pct": 30},
+        {"hex": "#FF5A36", "name": "punto de ella + BPM", "pct": 10}
+      ],
+      "lighting": "La pantalla se 'ENCIENDE' en el guion: es la única fuente cálida en la cara de Wyatt en ese momento.",
+      "camera": "Interfaz plana y circular o cuadrada según el reloj aprobado. Aparte, un insert en 3/4 sobre la muñeca.",
+      "references": [
+        {"title": "Garmin tactix (línea de relojes tácticos reales)", "credits": "Producto real, sirve como referente de interfaz de mapa y frecuencia cardíaca",
+         "url": "https://www.garmin.com/", "verified": false,
+         "take": "⚠ Verificar el modelo y las capturas de UI en el sitio oficial antes de usarlo."}
+      ],
+      "searches": ["tactical smartwatch map UI", "smartwatch heart rate interface dark", "GPS tracking two dots map watch"],
+      "prompts": [
+        {"label": "UI del reloj", "tool": "Nano Banana Pro",
+         "text": "Flat front-facing smartwatch screen graphic, square rounded display, true-black OLED background. Minimal monochrome map showing the Pacific Ocean between Japan and Colombia. Two location dots: a white dot labeled as the user in the mountains outside Medellín, Colombia, and an orange-red dot (#FF5A36) over the Pacific Ocean with a small arrow pointing east toward the white dot, connected by a thin dashed line. Below the map, a heart icon with \"124 BPM\" in orange-red. Clean tactical watch UI, crisp legible text, high resolution."}
+      ],
+      "mentor": "Insert gráfico: cuando una gráfica carga un giro de la trama, se diseña para leerse en menos de 2 segundos (máximo 2 o 3 elementos y un solo color de acento). El naranja del punto y el BPM es el mismo para que el ojo conecte 'ella' con 'alterada'."
+    }
+  ]
+}
