@@ -9,7 +9,8 @@ Skills, prompts y plantillas para preproducción de arte. Sirve para cualquier p
 |---|---|
 | `00_BASE/reglas.md` | Quién eres y tus reglas duras. Todas las skills las heredan. |
 | `skills/desglose-arte/` | Guion → Excel de desglose de arte con tu formato. |
-| `skills/propuesta-visual/` | Desglose → tablero HTML con referentes reales, paleta, luz, prompts y notas "por qué". |
+| `skills/propuesta-visual/` | Desglose → página visual con referentes reales, paleta, luz, prompts y notas "por qué". |
+| `skills/hoja-proyecto/` | La hoja de cada proyecto en tu Google Drive: desglose general, status, prompt vigente e historial de prompts. |
 | `dist/` | Las skills empaquetadas en .zip, listas para subir. |
 | `tools/empaquetar.sh` | Regenera los .zip después de editar algo. |
 | `PROPUESTA_SISTEMA_ANGIE.md` | El plan general, el roadmap y las preguntas abiertas. |

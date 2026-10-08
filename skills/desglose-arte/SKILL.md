@@ -8,7 +8,12 @@ description: Convierte un guion (PDF, .docx, .txt, .fountain o texto pegado) en 
 Lee primero `references/reglas.md` (la base de Angie) y `references/criterio.md`, que es la
 ingeniería inversa de cómo desglosa ella, con el par de oro del EP42.
 
-## 0. Antes de empezar: tipo de proyecto
+## 0. Antes de empezar: la hoja del proyecto y el tipo de proyecto
+**Primero pregunta por la hoja del proyecto** (skill `hoja-proyecto`, paso 1): "¿Ya tienes la
+hoja de este proyecto? Pásame el link. Si no, créala en tu Drive y pásame el link." El
+desglose se escribe ahí.
+
+Después identifica o pregunta el tipo de proyecto:
 Identifica o pregunta el tipo de proyecto. Cambia cómo se divide el Excel:
 
 | Tipo | Unidad = una pestaña | Extra |
@@ -70,11 +75,10 @@ python scripts/build_breakdown.py desglose.json BREAKDOWN_<UNIDAD>.xlsx --tracki
 - `--no-scenes` quita la columna ESC.
 - REFERENCE y FINAL **siempre vacías**: ahí Angie pega imágenes.
 
-## 5b. Registrar en la hoja del proyecto (siempre que exista)
-Si el proyecto tiene hoja maestra (skill `hoja-proyecto`), el desglose **se escribe ahí**
-siguiendo sus reglas: sin duplicar ítems que ya existen, sumando la unidad nueva. El Excel por
-episodio es opcional; la hoja maestra es el registro permanente. Si no hay hoja todavía,
-ofrécele crearla.
+## 5b. Escribir en la hoja del proyecto
+El desglose **se escribe en la hoja del proyecto** siguiendo las reglas de `hoja-proyecto`:
+sin duplicar ítems que ya existen y sumando la unidad nueva en APARECE EN. La hoja es el
+registro permanente. El Excel suelto por episodio solo se genera si Angie lo pide.
 
 ## 6. Entregar
 1. El `.xlsx` (lo abre en Excel o Google Sheets). Si además quiere verlo en pantalla, genera

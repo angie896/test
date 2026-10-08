@@ -1,85 +1,92 @@
 ---
 name: hoja-proyecto
-description: Mantiene la hoja maestra de arte de un proyecto (Google Sheets o Excel) como el registro permanente de todo, para que nada se quede solo en un chat. Incluye el desglose general (una fila por set, personaje, prop o gráfica, con los episodios o secuencias donde aparece), el prompt vigente de cada cosa listo para copiar y el historial de todas las versiones de prompts. Úsala siempre que Angie trabaje un proyecto que tenga hoja, cuando diga "agrégalo a la hoja", "actualiza el desglose general", "ajusta el prompt de SET-003", "qué prompt usé para…", "crea la hoja del proyecto", o cuando las skills desglose-arte o propuesta-visual produzcan algo nuevo. Sirve para cualquier proyecto (serie, corto, largo, videoclip, comercial).
+description: Mantiene la hoja de arte de cada proyecto en Google Sheets como el registro permanente de todo, para que nada se quede solo en un chat. Incluye el desglose general (una fila por set, personaje, prop o gráfica, con dónde aparece), el estado de cada cosa, el prompt vigente listo para copiar y el historial de prompts anteriores. Úsala al empezar cualquier trabajo de un proyecto, cuando Angie diga "agrégalo a la hoja", "actualiza el desglose", "ajusta el prompt de…", "qué prompt usé para…", o cuando las skills desglose-arte o propuesta-visual produzcan algo nuevo. Sirve para cualquier proyecto (serie, corto, largo, videoclip, comercial).
 ---
 
-# Hoja maestra del proyecto
+# Hoja de arte del proyecto
 
 Lee `references/reglas.md` (la base de Angie).
 
-**Idea central:** la hoja es la memoria del proyecto. Todo lo que se desglosa, propone o
-ajusta en un chat **termina escrito en la hoja**. El chat es desechable; la hoja no.
+**Idea central:** la hoja vive en la nube (Google Drive de Angie) y es la memoria del
+proyecto. Todo lo que se desglosa, propone o ajusta en un chat **termina escrito en la hoja**.
 
-## Estructura (no cambiarla sin preguntar)
+## Paso 1, siempre: preguntar por la hoja
+Antes de desglosar, proponer o ajustar nada de un proyecto, pregunta:
 
-**Pestaña `DESGLOSE GENERAL`**, una fila por cosa del proyecto:
+> ¿Ya tienes la hoja de este proyecto? Si sí, pásame el link.
+> Si no, créala en tu Google Drive (*Nuevo → Hojas de cálculo de Google*), ponle el nombre del
+> proyecto y pásame el link. Yo le armo las columnas.
+
+- **Claude no crea la hoja.** La crea Angie en su Drive, así es suya y queda en su nube.
+- Si el link ya está en las instrucciones del Proyecto de Claude o en la conversación, úsalo
+  sin volver a preguntar (solo confirma el nombre de la hoja).
+- Recomiéndale una vez: crear un **Proyecto en Claude** por cada proyecto suyo y pegar el link
+  en sus instrucciones, para no tener que pasarlo en cada chat.
+- Si el conector de Google Sheets no está conectado, explícale cómo conectarlo
+  (*Configuración → Conectores → Google Sheets*) y espera. Sin conector, usa el modo archivo
+  (abajo).
+
+## Paso 2: preparar la hoja (solo si está vacía)
+Si la hoja está vacía, créale esta estructura. Si ya tiene contenido, **léela y respétala**:
+no muevas ni renombres columnas de Angie. Si sus columnas son distintas, pregúntale cómo
+mapearlas.
+
+**Pestaña `DESGLOSE GENERAL`**:
 
 | Col | Encabezado | Quién la llena |
 |---|---|---|
-| A | ID | Claude. Fijo para siempre: `SET-001`, `CHR-004`, `PRP-002`, `GD-003` (`VEH`, `MUP`, `VFX` si aplican). Variantes: `SET-001.2`, `.3`… |
-| B | CATEGORY | Claude |
-| C | ITEM | Claude (inglés) |
-| D | UNIDADES | Claude: dónde aparece (`EP42, EP43` / `SEQ 03` / `CORTO`) |
-| E | ESC. | Claude: `EP42: 169, 170`, una línea por unidad |
-| F | DESCRIPTION | Claude (español). ⚠ en naranja = definir |
-| G | REFERENCE | **Angie** (imágenes). Claude NUNCA escribe aquí |
-| H | FINAL | **Angie** (imágenes). Claude NUNCA escribe aquí |
-| I | STATUS | Claude pone `TO DO` al crear y después solo lo cambia si Angie lo pide |
-| J | PROMPT | Claude: el prompt vigente, completo y listo para copiar |
-| K | VERSIÓN | Claude: `v1`, `v2`… |
-| L | HERRAMIENTA | Claude (Nano Banana Pro, Imagen…) |
-| M | NOTAS / AJUSTES | Ambos. Claude solo agrega texto, nunca borra lo de Angie |
+| A | CATEGORY | Claude: SETS, CHARACTERS, PROPS, GRAPHIC DESIGN (y VEHICLES, MAKEUP / SFX, VFX si aplican) |
+| B | ITEM | Claude (inglés) |
+| C | APARECE EN | Claude: unidad + escenas, una línea por unidad: `EP42: esc. 169, 170`. En un largo: `SEQ 03: esc. 12`. En un corto, solo las escenas |
+| D | DESCRIPTION | Claude (español). Las líneas con ⚠ son las que Angie debe definir |
+| E | REFERENCE | **Angie** (imágenes). Claude NUNCA escribe aquí |
+| F | FINAL | **Angie** (imágenes). Claude NUNCA escribe aquí |
+| G | STATUS | Menú desplegable: `TO DO`, `WIP`, `IN REVIEW`, `ADJUSTMENTS`, `DONE`. Claude pone `TO DO` al crear y no lo cambia salvo que Angie lo pida |
+| H | PROMPT | Claude: el prompt vigente, completo y listo para copiar |
 
-**Pestaña `HISTORIAL PROMPTS`**: `FECHA | ID | ITEM | VERSIÓN | PROMPT | QUÉ CAMBIÓ | ¿FUNCIONÓ?`.
-Cada prompt que alguna vez existió queda aquí. `¿FUNCIONÓ?` la marca Angie.
+Formato: encabezado gris oscuro con texto blanco, filas agrupadas por categoría, PROMPT con
+fondo amarillo claro, y la fila 1 y las columnas A–B fijas.
 
-**Pestaña `LÉEME`**: instrucciones para humanos.
+**Pestaña `HISTORIAL PROMPTS`**: `FECHA | ITEM | PROMPT | QUÉ CAMBIÓ | ¿FUNCIONÓ?`.
+Cada prompt que alguna vez existió queda aquí. `¿FUNCIONÓ?` (sí / no / a medias) la marca
+Angie.
 
 ## Reglas de escritura
-1. **Un ítem = una fila para todo el proyecto.** Si el desglose de un episodio nuevo trae algo
-   que ya existe (misma CATEGORY + mismo ITEM), NO se duplica: se agrega la unidad en
-   UNIDADES, sus escenas en ESC. y lo nuevo de la descripción como línea `[EP43] …`.
-   Si el nombre es parecido pero no igual ("Sofia's office" vs "Sofia office"), **pregunta**.
-2. **Un prompt por fila.** Si un ítem tiene variantes (set día/noche, versión LATER, pantallas
-   1–4), cada variante va en una fila propia debajo, con ID de sufijo (`SET-001.2`).
-3. **Ajustar un prompt = primero historial, después la celda.** Copia el prompt actual al
-   HISTORIAL (si no está), escribe el nuevo en PROMPT, sube VERSIÓN y registra en el
-   HISTORIAL la nueva versión con "qué cambió" en una frase.
-4. **Volver a un prompt viejo**: búscalo en HISTORIAL por ID y versión. Si Angie quiere
-   restaurarlo, vuelve a PROMPT como versión nueva ("restaurado desde v2").
+1. **Un ítem = una fila para todo el proyecto.** Se identifica por CATEGORY + ITEM (el mismo
+   nombre puede estar en PROPS y en GRAPHIC DESIGN, como un reloj y su interfaz). Si un
+   episodio nuevo trae algo que ya existe, NO se duplica: se agrega una línea en APARECE EN y
+   lo nuevo de la descripción como `[EP43] …`. Si el nombre es parecido pero no igual,
+   **pregunta**.
+2. **Un prompt por fila.** Si un ítem tiene variantes con prompt propio (día/noche, versión
+   LATER, pantallas 1–4), cada variante va en una fila justo debajo:
+   `Int. Kitchen — night`.
+3. **Ajustar un prompt**: primero copia el prompt actual al HISTORIAL (si no está), después
+   escribe el nuevo en PROMPT y regístralo en el HISTORIAL con "qué cambió" en una frase.
+4. **Volver a un prompt anterior**: búscalo en el HISTORIAL por ITEM y fecha y vuelve a
+   ponerlo en PROMPT ("restaurado del 2026-10-08").
 5. **Antes de escribir**, dile a Angie en una línea qué va a cambiar ("3 ítems nuevos, 2
-   actualizados, 1 prompt ajustado en SET-003"). Después confirma qué quedó escrito.
-6. Nunca borrar filas ni columnas. Lo descartado se marca `DESCARTADO` en STATUS.
+   actualizados, prompt ajustado en Int. Kitchen"). Después confirma qué quedó escrito.
+6. Nunca borres filas ni columnas, ni lo que Angie escribió.
+7. **Lee siempre la hoja antes de escribir**: lo que está en la hoja manda sobre lo que
+   recuerdes del chat, porque Angie la edita a mano.
 
-## Con el conector de Google Sheets (lo ideal)
-Herramientas del conector: `get_spreadsheet`, `get_values`, `update_values`,
-`insert_dimension`, `update_spreadsheet`.
+## Con el conector de Google Sheets (lo normal)
+Herramientas: `get_spreadsheet` (pestañas y estructura), `get_values` (leer),
+`update_values` (escribir celdas), `insert_dimension` (abrir filas para variantes o para
+agrupar por categoría) y `update_spreadsheet` (crear pestañas, menú desplegable de STATUS,
+formato, filas fijas).
 
-1. **Ubicar la hoja**: Angie pega el link una vez. Recomiéndale crear un **Proyecto en
-   Claude** por cada proyecto y guardar el link en sus instrucciones: así todos los chats de
-   ese proyecto saben cuál es la hoja.
-2. **Leer siempre antes de escribir**: `get_values` de `DESGLOSE GENERAL!A1:M` y arma el
-   mapa ID → fila y (CATEGORY, ITEM) → fila. Ella puede haber editado cosas a mano: lo que
-   está en la hoja manda sobre lo que recuerdes del chat.
-3. **Ítems nuevos**: escríbelos en las primeras filas vacías con `update_values`.
-   **Variantes**: `insert_dimension` para abrir una fila debajo del ítem padre.
-4. **Ajuste de prompt**: lee la fila → agrega al final de `HISTORIAL PROMPTS` con
-   `update_values` → actualiza PROMPT y VERSIÓN.
-5. **Hoja nueva**: lo más fácil es que Angie suba `assets/PLANTILLA_DESGLOSE_GENERAL.xlsx` a
-   Google Drive y la abra con Google Sheets (*Archivo → Guardar como Hoja de cálculo de
-   Google*). Después te pasa el link.
-
-## Sin conector (archivo .xlsx)
-Usa `scripts/hoja_proyecto.py`:
+## Sin conector (modo archivo, respaldo)
+`scripts/hoja_proyecto.py` hace lo mismo sobre un .xlsx:
 ```bash
-python scripts/hoja_proyecto.py crear  PROYECTO.xlsx --titulo "Nombre" --tipo serie
+python scripts/hoja_proyecto.py crear   PROYECTO.xlsx
 python scripts/hoja_proyecto.py agregar PROYECTO.xlsx desglose.json --propuesta propuesta.json
-python scripts/hoja_proyecto.py prompt PROYECTO.xlsx SET-003 "nuevo prompt…" --cambio "más cálido"
+python scripts/hoja_proyecto.py prompt  PROYECTO.xlsx "Int. Kitchen" "nuevo prompt…" --cambio "más cálido" [--categoria SETS]
 ```
-Pídele a Angie que suba su versión más reciente de la hoja antes de cada cambio y entrégale
-la versión actualizada. Avísale que **con el conector no tendría que subir ni bajar nada**.
+Angie sube el .xlsx a su Drive y lo abre con Google Sheets. `assets/PLANTILLA_HOJA_PROYECTO.xlsx`
+es la hoja vacía. Recuérdale que **con el conector no tendría que subir ni bajar nada**.
 
 ## Entregar
-- Confirma en el chat qué filas cambiaron (por ID). No pegues la hoja en el chat.
-- Si cambió algo visual (propuesta nueva), muestra también la página visual de
-  `propuesta-visual`.
+- En el chat: qué filas cambiaron (por nombre de ítem) y el link de la hoja. No pegues la hoja
+  en el chat.
+- Si hubo propuesta visual, muestra también la página visual de `propuesta-visual`.
