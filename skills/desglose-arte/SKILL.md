@@ -70,6 +70,12 @@ python scripts/build_breakdown.py desglose.json BREAKDOWN_<UNIDAD>.xlsx --tracki
 - `--no-scenes` quita la columna ESC.
 - REFERENCE y FINAL **siempre vacías**: ahí Angie pega imágenes.
 
+## 5b. Registrar en la hoja del proyecto (siempre que exista)
+Si el proyecto tiene hoja maestra (skill `hoja-proyecto`), el desglose **se escribe ahí**
+siguiendo sus reglas: sin duplicar ítems que ya existen, sumando la unidad nueva. El Excel por
+episodio es opcional; la hoja maestra es el registro permanente. Si no hay hoja todavía,
+ofrécele crearla.
+
 ## 6. Entregar
 1. El `.xlsx` (lo abre en Excel o Google Sheets). Si además quiere verlo en pantalla, genera
    la página visual con la skill `propuesta-visual` (pestaña Desglose). **No le muestres el

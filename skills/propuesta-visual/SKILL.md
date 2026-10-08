@@ -51,6 +51,11 @@ paleta, links a los referentes, botones para copiar búsquedas y prompts, y modo
   doble clic en el navegador.
 - El JSON es interno (sirve para iterar): no se lo muestres a menos que lo pida.
 
+## 2b. Guardar los prompts en la hoja del proyecto (siempre que exista)
+Cada prompt va a la columna PROMPT de su fila en la hoja maestra (skill `hoja-proyecto`). Las
+variantes van en filas `.2`, `.3`, y cada versión queda en HISTORIAL PROMPTS. Cuando Angie
+pida un ajuste ("SET-003 más cálido"), se ajusta **en la hoja**, no solo en el chat.
+
 ## 3. Entregar
 - La página visual renderizada (ver arriba). Guarda el JSON por tu lado para iterar.
 - En el chat: un resumen corto y la lista de ⚠ pendientes. No repitas los prompts en el chat:
