@@ -1,16 +1,19 @@
 ---
 name: propuesta-visual
-description: Toma un desglose de arte (JSON o Excel de la skill desglose-arte, o una lista de sets, personajes, props o gráficos) y genera la propuesta visual completa de cada ítem. Incluye intención narrativa, paleta 60-30-10 en HEX, lógica de luz, cámara del plate, referentes REALES verificados con fuente, búsquedas listas para Flim, ShotDeck y FilmGrab, prompts de imagen en inglés listos para copiar y una nota "por qué" para aprender production design y fotografía. Entrega un tablero HTML visual. Úsala cuando Angie diga "propuesta visual", "arma la propuesta", "dame los prompts del desglose", "referentes para…", "cómo se debería ver…" o pida el paso siguiente al desglose. Sirve para serie, corto, largo, videoclip, comercial o videojuego. No genera prompts de video.
+description: Toma los ítems de la hoja del proyecto de Angie (o un desglose, o una lista de sets, personajes, props o gráficos) y genera la propuesta visual completa de cada uno, escribe los prompts en la columna PROMPT de la hoja y los ajusta ahí guardando el historial. Incluye intención narrativa, paleta 60-30-10 en HEX, lógica de luz, cámara del plate, referentes REALES verificados con fuente, búsquedas listas para Flim, ShotDeck y FilmGrab, prompts de imagen en inglés listos para copiar y una nota "por qué" para aprender production design y fotografía. Entrega un tablero HTML visual. Úsala cuando Angie diga "propuesta visual", "arma la propuesta", "dame los prompts", "referentes para…", "cómo se debería ver…", "ajusta el prompt de…", "más cálido / más oscuro…", "qué prompt usé para…" o pida el paso siguiente al desglose. Sirve para serie, corto, largo, videoclip, comercial o videojuego. No genera prompts de video.
 ---
 
 # Propuesta visual (desglose → tablero con referentes y prompts)
 
-Lee primero `references/reglas.md` (la base de Angie). Después:
+Lee primero `references/reglas.md` (la base de Angie) y `references/hoja.md` (la hoja del
+proyecto: **obligatorio**). Después:
 `references/referentes.md` (protocolo de referentes reales: **obligatorio**),
 `references/prompt_imagen.md` (anatomía de prompts) y `references/esquema_propuesta.md`.
 
 ## 0. Entrada y alcance
-- Entrada ideal: el JSON del desglose. Si llega un Excel, léelo. Si llega texto, arma la lista.
+- **Pide el link de la hoja del proyecto** si no lo tienes (`references/hoja.md`, sección 1)
+  y léela: los ítems salen de ahí. Si Angie trae una lista suelta, trabaja con ella y ofrece
+  agregarla a la hoja.
 - Si hay biblia de continuidad del proyecto, **léela primero**: paletas, luz y vestuario ya
   aprobados mandan sobre cualquier propuesta nueva.
 - Pregunta cuántos ítems trabajar si son más de ~8. Mejor por tandas (primero SETS, luego
@@ -52,10 +55,17 @@ paleta, links a los referentes, botones para copiar búsquedas y prompts, y modo
 - El JSON es interno (sirve para iterar): no se lo muestres a menos que lo pida.
 
 ## 2b. Guardar los prompts en la hoja del proyecto
-Si no tienes el link de la hoja, pregúntalo primero (skill `hoja-proyecto`, paso 1). Cada
-prompt va a la columna PROMPT de su fila. Las variantes van en filas propias justo debajo
-("Int. Kitchen — night"), y cada prompt queda también en HISTORIAL PROMPTS. Cuando Angie pida
-un ajuste ("la cocina más cálida"), se ajusta **en la hoja**, no solo en el chat.
+Cada prompt va a la columna PROMPT de su fila (`references/hoja.md`, sección 3). Las variantes
+van en filas propias justo debajo ("Int. Kitchen — night") y cada prompt queda también en
+HISTORIAL PROMPTS. Sin conector: `scripts/hoja_proyecto.py agregar … --propuesta`.
+
+## 2c. Ajustar un prompt
+Cuando Angie pida un ajuste ("la cocina más cálida", "quita la ventana"):
+1. Lee el prompt vigente en la hoja (puede haberlo editado ella).
+2. Haz el cambio mínimo que pidió: no reescribas todo el prompt.
+3. Escríbelo en la hoja siguiendo `references/hoja.md` (el anterior queda en el HISTORIAL).
+4. En el chat, muestra el prompt nuevo completo (para que lo copie ya) y en una línea qué
+   cambió. Sin conector: `scripts/hoja_proyecto.py prompt`.
 
 ## 3. Entregar
 - La página visual renderizada (ver arriba). Guarda el JSON por tu lado para iterar.
