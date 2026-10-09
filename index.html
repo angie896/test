@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Invitacion digital a la premiere en cines de SWIPE RIGHT - Dead Camera Studios">
+<style>html,body{height:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Premiere SWIPE RIGHT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<style>
+/* Layout concept: a single dark "binder" phone centered on an ambient flame-lit stage; screens swap inside it. */
+:root{
+  --bg:#0c0e15;            /* ambient stage behind the phone */
+  --app:#161925;          /* app background */
+  --surface:#1f2433;      /* raised panels */
+  --surface-2:#272e40;    /* chips, inputs */
+  --line:rgba(255,255,255,.09);
+  --fg:#f4f5fa;
+  --muted:#9aa1b6;
+  --dim:#6e758c;
+  --flame-1:#ff9a3d;
+  --flame-2:#ff5864;
+  --flame-3:#fd267a;
+  --like-1:#8ee06e;
+  --like-2:#3fc463;
+  --nope-1:#ff54d6;
+  --nope-2:#ff2e63;
+  --star-1:#ffc24b;
+  --star-2:#ff7a45;
+  --flame:linear-gradient(135deg,var(--flame-1) 0%,var(--flame-2) 52%,var(--flame-3) 100%);
+  --radius:22px;
+  color-scheme:dark;
+  --d-fast:.18s;
+  --d-med:.34s;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--fg);
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(253,38,122,.18), transparent 55%),
+    radial-gradient(120% 80% at 50% 110%, rgba(255,122,69,.14), transparent 55%),
+    var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+img{display:block;max-width:100%}
+button{font-family:inherit}
+
+/* ---------- Phone shell ---------- */
+.phone{
+  position:relative;
+  width:100%;max-width:412px;height:100%;max-height:880px;
+  background:var(--app);
+  border-radius:40px;
+  overflow:hidden;
+  box-shadow:0 40px 120px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.04) inset;
+  display:flex;flex-direction:column;
+}
+.screen{
+  position:absolute;inset:0;
+  display:none;flex-direction:column;
+  overflow:hidden;
+}
+.screen.active{display:flex}
+
+/* ---------- Status + header chrome ---------- */
+.statusbar{
+  flex:0 0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 22px 2px;
+  font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--fg);
+  font-family:"Poppins",sans-serif;
+}
+.statusbar .sig{display:flex;align-items:center;gap:6px}
+.bars{display:flex;align-items:flex-end;gap:2px;height:11px}
+.bars i{width:3px;background:var(--fg);border-radius:1px;display:block}
+.bars i:nth-child(1){height:4px}.bars i:nth-child(2){height:6px}
+.bars i:nth-child(3){height:8px}.bars i:nth-child(4){height:11px}
+.batt{width:24px;height:12px;border:1.5px solid var(--fg);border-radius:3px;position:relative;padding:1.5px}
+.batt::after{content:"";position:absolute;right:-3px;top:3px;width:2px;height:4px;background:var(--fg);border-radius:0 1px 1px 0}
+.batt span{display:block;height:100%;width:80%;background:var(--fg);border-radius:1px}
+
+.logo{
+  font-family:"Poppins",sans-serif;font-weight:800;font-size:28px;letter-spacing:-.02em;
+  display:inline-flex;align-items:center;gap:7px;line-height:1;
+}
+.logo .mark{font-size:26px;filter:drop-shadow(0 2px 6px rgba(253,38,122,.5))}
+.logo .word{
+  background:var(--flame);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.apphead{
+  flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  padding:6px 20px 14px;position:relative;
+}
+.apphead .back{position:absolute;left:18px;top:50%;transform:translateY(-50%);
+  background:none;border:0;color:var(--fg);font-size:22px;cursor:pointer;opacity:.85;padding:4px;line-height:1}
+
+/* ---------- Generic buttons ---------- */
+.btn{
+  width:100%;border:0;border-radius:16px;padding:16px 18px;
+  font-family:"Poppins",sans-serif;font-weight:700;font-size:16px;letter-spacing:.01em;
+  color:#fff;cursor:pointer;background:var(--flame);
+  box-shadow:0 12px 30px -10px rgba(253,38,122,.6);
+  transition:transform var(--d-fast) ease, filter var(--d-fast) ease;
+}
+.btn:hover{filter:brightness(1.05)}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.btn.ghost{background:var(--surface-2);color:var(--fg);box-shadow:none}
+.btn.outline{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-row{display:flex;flex-direction:column;gap:10px}
+
+.eyebrow{
+  font-family:"Poppins",sans-serif;font-weight:700;font-size:12px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--flame-2);
+}
+.muted{color:var(--muted)}
+.dim{color:var(--dim)}
+
+/* ---------- SPLASH ---------- */
+#splash{align-items:center;justify-content:center;text-align:center;padding:40px 30px;gap:0}
+#splash .big{font-size:62px}
+#splash h1{
+  font-family:"Poppins",sans-serif;font-weight:800;font-size:30px;line-height:1.08;
+  margin:26px 0 0;text-wrap:balance;
+}
+#splash p{margin:14px 0 0;max-width:30ch;color:var(--muted);font-size:15.5px;line-height:1.5}
+#splash .foot{margin-top:auto;padding-top:28px;width:100%}
+#splash .cta-wrap{width:100%;margin-top:34px}
+#splash .by{margin-top:18px;font-size:12px;letter-spacing:.04em}
+
+/* ---------- CREATE PROFILE ---------- */
+#create{padding:4px 26px 26px}
+#create .body{flex:1;display:flex;flex-direction:column;gap:20px;overflow-y:auto}
+#create h2{font-family:"Poppins",sans-serif;font-weight:800;font-size:23px;margin:4px 0 0;text-wrap:balance}
+#create .sub{color:var(--muted);font-size:14.5px;margin:8px 0 2px;line-height:1.45}
+.avatar-pick{display:flex;flex-direction:column;align-items:center;gap:12px;margin:6px 0 2px}
+.avatar{
+  width:118px;height:118px;border-radius:50%;background:var(--surface-2);
+  display:grid;place-items:center;overflow:hidden;position:relative;
+  box-shadow:0 0 0 3px rgba(255,255,255,.06), 0 10px 30px -12px rgba(0,0,0,.6);
+}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.avatar .ph{font-size:40px;opacity:.5}
+.avatar .cam{
+  position:absolute;right:-2px;bottom:-2px;width:38px;height:38px;border-radius:50%;
+  background:var(--flame);display:grid;place-items:center;font-size:17px;
+  box-shadow:0 4px 12px -2px rgba(0,0,0,.5);border:3px solid var(--app);
+}
+.avatar-pick label{cursor:pointer}
+.avatar-pick .hint{font-size:12.5px;color:var(--dim)}
+.field label.lab{display:block;font-family:"Poppins",sans-serif;font-weight:600;font-size:13px;letter-spacing:.02em;margin:0 0 7px;color:var(--fg)}
+.field input{
+  width:100%;background:var(--surface-2);border:1.5px solid transparent;border-radius:14px;
+  padding:14px 15px;color:var(--fg);font-size:16px;font-family:inherit;outline:none;
+  transition:border-color var(--d-fast) ease;
+}
+.field input::placeholder{color:var(--dim)}
+.field input:focus{border-color:var(--flame-2)}
+#create .foot{margin-top:14px}
+
+/* ---------- DISCOVER / SWIPE ---------- */
+#discover{background:var(--app)}
+.deck{position:relative;flex:1;margin:0 14px;min-height:0}
+.card{
+  position:absolute;inset:0;border-radius:var(--radius);overflow:hidden;
+  background:var(--surface);
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.05) inset;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;
+  will-change:transform;
+}
+.card.dragging{cursor:grabbing;transition:none}
+.card.reset{transition:transform .4s cubic-bezier(.2,.8,.25,1)}
+.card.fly{transition:transform .5s cubic-bezier(.4,0,.2,1), opacity .5s ease}
+
+/* key-art placeholder photos */
+.photos{position:absolute;inset:0}
+.photo{position:absolute;inset:0;opacity:0;transition:opacity var(--d-med) ease;
+  display:grid;place-items:center;}
+.photo.show{opacity:1}
+.photo .art{position:absolute;inset:0}
+.ka{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:30px}
+.ka .srword{font-family:"Poppins",sans-serif;font-weight:800;font-size:34px;line-height:.98;letter-spacing:-.02em;color:#fff;text-shadow:0 6px 24px rgba(0,0,0,.45)}
+.ka .srword small{display:block;font-size:13px;font-weight:600;letter-spacing:.42em;margin-top:8px;opacity:.9}
+.ka .slot{font-family:"Poppins",sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);border:1.5px dashed rgba(255,255,255,.5);border-radius:999px;padding:7px 14px}
+.ka .slate{width:58px;height:46px;position:relative;opacity:.9}
+.photo .scrim{position:absolute;inset:0;background:linear-gradient(to top, rgba(8,9,14,.92) 0%, rgba(8,9,14,.5) 34%, rgba(8,9,14,0) 60%)}
+
+/* progress bars */
+.bars-top{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:6px;z-index:4}
+.bars-top i{flex:1;height:3.5px;border-radius:2px;background:rgba(255,255,255,.28);overflow:hidden}
+.bars-top i.on{background:#fff}
+
+/* tap zones to cycle photos */
+.tapzone{position:absolute;top:0;bottom:34%;width:40%;z-index:3}
+.tapzone.l{left:0}.tapzone.r{right:0}
+
+/* info overlay */
+.info{position:relative;z-index:4;padding:0 20px 16px;color:#fff}
+.info .nm{font-family:"Poppins",sans-serif;font-weight:800;font-size:28px;line-height:1.05;display:flex;align-items:center;gap:9px}
+.info .verified{width:22px;height:22px;border-radius:50%;background:var(--flame);display:grid;place-items:center;font-size:12px}
+.info .chip{font-family:"Poppins",sans-serif;font-weight:700;font-size:11px;letter-spacing:.06em;background:rgba(255,255,255,.16);backdrop-filter:blur(4px);padding:4px 9px;border-radius:7px}
+.info .loc{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:14px;color:rgba(255,255,255,.82)}
+.info .bio{margin-top:11px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.92);max-width:36ch}
+.info .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.pill{background:rgba(255,88,100,.9);color:#fff;font-family:"Poppins",sans-serif;font-weight:600;font-size:12.5px;
+  padding:7px 13px;border-radius:999px;white-space:nowrap}
+
+/* swipe stamps */
+.stamp{position:absolute;top:30px;z-index:6;font-family:"Poppins",sans-serif;font-weight:800;
+  font-size:30px;letter-spacing:.06em;padding:7px 16px;border-radius:12px;opacity:0;pointer-events:none;
+  transform:rotate(-14deg);text-transform:uppercase}
+.stamp.like{left:22px;color:var(--like-1);border:4px solid var(--like-1);transform:rotate(-16deg)}
+.stamp.nope{right:22px;color:var(--nope-1);border:4px solid var(--nope-1);transform:rotate(16deg)}
+
+/* action buttons */
+.actions{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 0 10px}
+.act{border:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;color:#fff;
+  box-shadow:0 10px 26px -10px rgba(0,0,0,.7);transition:transform var(--d-fast) ease, filter var(--d-fast) ease}
+.act:hover{filter:brightness(1.08)}
+.act:active{transform:scale(.9)}
+.act.sm{width:52px;height:52px;font-size:22px}
+.act.lg{width:66px;height:66px;font-size:28px}
+.act.nope{background:linear-gradient(135deg,var(--nope-1),var(--nope-2))}
+.act.star{background:linear-gradient(135deg,var(--star-1),var(--star-2))}
+.act.like{background:linear-gradient(135deg,var(--like-1),var(--like-2))}
+
+/* bottom nav */
+.nav{flex:0 0 auto;display:flex;justify-content:space-around;padding:10px 6px 8px;border-top:1px solid var(--line)}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;color:var(--dim);
+  font-family:"Poppins",sans-serif;font-weight:600;letter-spacing:.02em;text-decoration:none}
+.nav a.on{color:var(--flame-2)}
+.nav .ic{font-size:19px}
+
+/* toast */
+.toast{position:absolute;left:50%;bottom:92px;transform:translate(-50%,16px);z-index:30;
+  background:rgba(20,23,34,.96);border:1px solid var(--line);color:var(--fg);
+  padding:11px 17px;border-radius:14px;font-size:13.5px;font-weight:600;
+  box-shadow:0 14px 40px -12px rgba(0,0,0,.7);opacity:0;pointer-events:none;
+  transition:opacity var(--d-fast) ease, transform var(--d-fast) ease;white-space:nowrap;max-width:88%}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- MATCH ---------- */
+#match{align-items:center;justify-content:center;text-align:center;padding:40px 30px;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(253,38,122,.5), transparent 60%),
+    radial-gradient(120% 70% at 50% 100%, rgba(255,122,69,.4), transparent 60%),
+    var(--app);}
+#match .ismatch{font-family:"Poppins",sans-serif;font-weight:800;font-size:40px;line-height:1;
+  background:var(--flame);-webkit-background-clip:text;background-clip:text;color:transparent;
+  font-style:italic;letter-spacing:-.01em}
+#match .msub{margin:16px 0 0;color:var(--fg);font-size:16px;max-width:28ch;line-height:1.45;opacity:.92}
+.match-avatars{display:flex;align-items:center;justify-content:center;margin:34px 0 6px}
+.match-avatars .a{width:118px;height:118px;border-radius:50%;overflow:hidden;background:var(--surface-2);
+  box-shadow:0 0 0 4px var(--app), 0 0 0 6px rgba(255,255,255,.14);display:grid;place-items:center}
+.match-avatars .a img{width:100%;height:100%;object-fit:cover}
+.match-avatars .a.sr{background:var(--flame)}
+.match-avatars .a.sr span{font-family:"Poppins",sans-serif;font-weight:800;font-size:15px;color:#fff;letter-spacing:.04em;line-height:1.05;padding:8px}
+.match-avatars .a:last-child{margin-left:-26px}
+.match-avatars .heart{position:relative;z-index:3;width:50px;height:50px;border-radius:50%;background:#fff;
+  display:grid;place-items:center;font-size:24px;margin:0 -16px;box-shadow:0 8px 20px -6px rgba(0,0,0,.5)}
+#match .foot{margin-top:auto;padding-top:30px;width:100%}
+#match .ph-name{font-weight:700}
+
+/* ---------- DETAILS ---------- */
+#details{padding:4px 24px 24px}
+#details .scroll{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:16px;padding-bottom:6px}
+#details h2{font-family:"Poppins",sans-serif;font-weight:800;font-size:24px;margin:6px 0 0;text-wrap:balance}
+#details .lead{color:var(--muted);font-size:14.5px;margin:8px 0 2px;line-height:1.5}
+.ticket{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.ticket .top{background:var(--flame);padding:18px 20px;color:#fff;display:flex;align-items:center;justify-content:space-between}
+.ticket .top .t{font-family:"Poppins",sans-serif;font-weight:800;font-size:19px;letter-spacing:-.01em}
+.ticket .top .s{font-size:12px;font-weight:600;opacity:.92;margin-top:2px;letter-spacing:.04em}
+.ticket .top .seal{font-size:26px}
+.rows{padding:6px 20px 18px}
+.row{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .ic{font-size:18px;width:24px;text-align:center;margin-top:1px}
+.row .k{font-family:"Poppins",sans-serif;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.row .v{font-size:16px;font-weight:600;margin-top:3px;line-height:1.3}
+.row .v.todo{color:var(--star-1);font-weight:700;border:1.5px dashed rgba(255,194,75,.5);border-radius:8px;padding:3px 9px;display:inline-block;font-size:13.5px;letter-spacing:.02em}
+#details .foot{margin-top:14px}
+#details .finep{font-size:12px;color:var(--dim);text-align:center;margin:12px 2px 0;line-height:1.5}
+
+/* ---------- DONE ---------- */
+#done{align-items:center;text-align:center;padding:36px 28px 26px}
+#done .scroll{flex:1;display:flex;flex-direction:column;align-items:center;overflow-y:auto;width:100%}
+#done .seal{font-size:52px}
+#done h2{font-family:"Poppins",sans-serif;font-weight:800;font-size:26px;margin:18px 0 0;text-wrap:balance}
+#done .sub{color:var(--muted);font-size:15px;margin:12px 0 0;max-width:30ch;line-height:1.5}
+#done .passcard{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:18px;
+  padding:18px;margin:24px 0 0;text-align:left}
+#done .passcard .who{display:flex;align-items:center;gap:12px}
+#done .passcard .who .av{width:46px;height:46px;border-radius:50%;overflow:hidden;background:var(--surface-2);display:grid;place-items:center;flex:0 0 auto}
+#done .passcard .who .av img{width:100%;height:100%;object-fit:cover}
+#done .passcard .who .nm{font-family:"Poppins",sans-serif;font-weight:700;font-size:16px}
+#done .passcard .who .st{font-size:12px;color:var(--like-2);font-weight:600;margin-top:2px}
+#done .passcard .detail{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);line-height:1.55;word-break:break-word}
+#done .passcard .detail b{color:var(--fg);font-weight:600}
+#done .foot{margin-top:auto;padding-top:22px;width:100%}
+#done .copybtn{display:inline-flex;align-items:center;gap:7px;background:var(--surface-2);border:0;color:var(--fg);
+  font-family:"Poppins",sans-serif;font-weight:600;font-size:12.5px;padding:7px 13px;border-radius:999px;cursor:pointer;margin-top:12px}
+
+a.btn{display:block;text-align:center;text-decoration:none}
+
+/* small screens: full-bleed phone */
+@media (max-width:460px){
+  body{padding:0}
+  .phone{max-width:none;max-height:none;border-radius:0;height:100%;box-shadow:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.001ms !important}
+}
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <!-- ============ SPLASH ============ -->
+  <section class="screen active" id="splash">
+    <div class="statusbar">
+      <span class="sig"><span>5G</span><span class="bars"><i></i><i></i><i></i><i></i></span></span>
+      <span class="batt"><span></span></span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+      <div class="logo" style="font-size:42px"><span class="mark">🔥</span><span class="word">binder</span></div>
+      <h1>Hiciste match con la<br>premiere de <span style="background:var(--flame);-webkit-background-clip:text;background-clip:text;color:transparent">SWIPE RIGHT</span></h1>
+      <p>Una noche. Pantalla gigante. Toda la temporada 1. Crea tu perfil y desliza para aceptar tu invitación.</p>
+    </div>
+    <div class="foot" style="padding:0 30px 34px">
+      <button class="btn" id="go-create">Crear mi perfil</button>
+      <div class="by muted" style="text-align:center">Dead Camera Studios · Invitación digital</div>
+    </div>
+  </section>
+
+  <!-- ============ CREATE PROFILE ============ -->
+  <section class="screen" id="create">
+    <div class="statusbar">
+      <span class="sig"><span>5G</span><span class="bars"><i></i><i></i><i></i><i></i></span></span>
+      <span class="batt"><span></span></span>
+    </div>
+    <div class="apphead"><button class="back" data-back="splash" aria-label="Atrás">‹</button>
+      <div class="logo" style="font-size:22px"><span class="mark">🔥</span><span class="word">binder</span></div>
+    </div>
+    <div class="body">
+      <div>
+        <div class="eyebrow">Paso 1 de 2</div>
+        <h2>Crea tu perfil</h2>
+        <p class="sub">Así te reconocemos en la puerta y te enviamos tu entrada digital.</p>
+      </div>
+
+      <div class="avatar-pick">
+        <label for="photo-input">
+          <span class="avatar" id="avatar-box">
+            <span class="ph" id="avatar-ph">📷</span>
+            <img id="avatar-img" alt="" hidden>
+            <span class="cam">＋</span>
+          </span>
+        </label>
+        <input type="file" id="photo-input" accept="image/*" hidden>
+        <span class="hint">Toca para subir una foto (opcional)</span>
+      </div>
+
+      <div class="field">
+        <label class="lab" for="name-input">Tu nombre</label>
+        <input id="name-input" type="text" placeholder="¿Cómo apareces en los créditos?" autocomplete="name" maxlength="40">
+      </div>
+      <div class="field">
+        <label class="lab" for="email-input">Tu correo</label>
+        <input id="email-input" type="email" placeholder="Para enviarte tu entrada digital" autocomplete="email" maxlength="80">
+      </div>
+    </div>
+    <div class="foot">
+      <button class="btn" id="go-discover" disabled>Entrar a binder</button>
+    </div>
+  </section>
+
+  <!-- ============ DISCOVER / SWIPE ============ -->
+  <section class="screen" id="discover">
+    <div class="statusbar">
+      <span class="sig"><span>5G</span><span class="bars"><i></i><i></i><i></i><i></i></span></span>
+      <span class="batt"><span></span></span>
+    </div>
+    <div class="apphead">
+      <div class="logo"><span class="mark">🔥</span><span class="word">binder</span></div>
+    </div>
+
+    <div class="deck" id="deck">
+      <div class="card reset" id="card">
+        <div class="bars-top" id="bars-top"></div>
+        <div class="stamp like" id="stamp-like">Match</div>
+        <div class="stamp nope" id="stamp-nope">Nope</div>
+        <div class="photos" id="photos"></div>
+        <div class="tapzone l" data-tap="-1"></div>
+        <div class="tapzone r" data-tap="1"></div>
+        <div class="info">
+          <div class="nm"><span id="sr-name">Swipe Right</span><span class="verified" title="Verificado">✓</span><span class="chip" id="sr-chip">S1</span></div>
+          <div class="loc"><span>📍</span><span id="sr-loc">En cines · Una sola noche</span></div>
+          <div class="bio" id="sr-bio"></div>
+          <div class="pills" id="sr-pills"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="act sm nope" id="act-nope" aria-label="No">✕</button>
+      <button class="act star" id="act-star" aria-label="Super like" style="width:56px;height:56px;font-size:23px">★</button>
+      <button class="act lg like" id="act-like" aria-label="Match">💚</button>
+    </div>
+
+    <nav class="nav">
+      <a class="on"><span class="ic">🧭</span>Descubre</a>
+      <a><span class="ic">♥</span>Matches</a>
+      <a><span class="ic">💬</span>Mensajes</a>
+      <a><span class="ic">👤</span>Perfil</a>
+    </nav>
+
+    <div class="toast" id="toast"></div>
+  </section>
+
+  <!-- ============ MATCH ============ -->
+  <section class="screen" id="match">
+    <div class="ismatch">¡Es un match!</div>
+    <p class="msub">A <b>SWIPE RIGHT</b> también le gustaste, <span class="ph-name" id="match-name">crack</span>.</p>
+    <div class="match-avatars">
+      <span class="a" id="match-you"><span class="ph" style="font-size:40px;opacity:.5">👤</span></span>
+      <span class="heart">❤️</span>
+      <span class="a sr"><span>SWIPE<br>RIGHT</span></span>
+    </div>
+    <div class="foot">
+      <button class="btn" id="go-details">Ver los detalles de la premiere</button>
+    </div>
+  </section>
+
+  <!-- ============ DETAILS ============ -->
+  <section class="screen" id="details">
+    <div class="apphead" style="padding-top:18px"><button class="back" data-back="discover" aria-label="Atrás">‹</button>
+      <div class="logo" style="font-size:20px"><span class="mark">🔥</span><span class="word">binder</span></div>
+    </div>
+    <div class="scroll">
+      <div>
+        <div class="eyebrow">Estás invitado · Paso 2 de 2</div>
+        <h2>La premiere de SWIPE RIGHT</h2>
+        <p class="lead">Proyección en pantalla grande de toda la temporada 1. Trae tu mejor cara de primera cita.</p>
+      </div>
+
+      <div class="ticket">
+        <div class="top">
+          <div><div class="t">SWIPE RIGHT</div><div class="s">PREMIERE · CINES</div></div>
+          <div class="seal">🎬</div>
+        </div>
+        <div class="rows" id="detail-rows"></div>
+      </div>
+
+    </div>
+    <div class="foot">
+      <button class="btn" id="go-confirm">Ver mi entrada</button>
+      <div class="finep">Tu swipe right ya confirmó tu lugar. No tienes que llenar nada más.</div>
+    </div>
+  </section>
+
+  <!-- ============ DONE ============ -->
+  <section class="screen" id="done">
+    <div class="scroll">
+      <div class="seal">🎬</div>
+      <h2 id="done-title">¡Estás en la lista!</h2>
+      <p class="sub" id="done-sub">Tu lugar quedó guardado. Toma un pantallazo de esta entrada y muéstrala en la puerta.</p>
+
+      <div class="passcard">
+        <div class="who">
+          <span class="av" id="done-av"><span class="ph" style="font-size:22px;opacity:.5">👤</span></span>
+          <div>
+            <div class="nm" id="done-name">Invitado</div>
+            <div class="st" id="done-status">● Confirmado para SWIPE RIGHT</div>
+          </div>
+        </div>
+        <div class="detail" id="done-detail"></div>
+      </div>
+      <button class="copybtn" id="copy-btn">📋 Copiar mis datos</button>
+    </div>
+    <div class="foot">
+      <div class="btn-row" id="done-cta"></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     CONFIG — edita todo aquí. Lo que diga "" o [...] es placeholder.
+     ============================================================ */
+  var CONFIG = {
+    // Datos del evento (reemplaza los placeholders):
+    event: {
+      date:    "",   // ej: "Sábado 22 de noviembre, 2026"
+      time:    "",   // ej: "7:00 p. m."
+      venue:   "",   // ej: "Cine Colombia — Sala Premium"
+      address: "",   // ej: "C.C. El Tesoro, Medellín"
+      city:    "",   // ej: "Medellín, Colombia"
+      dress:   ""    // ej: "Cómodo pero con actitud" (opcional)
+    },
+    // Formulario de Google: al hacer swipe right los datos se envían SOLOS en segundo plano
+    // (el invitado nunca ve el formulario). Las respuestas caen en la hoja de cálculo del form.
+    form: {
+      base: "https://docs.google.com/forms/d/e/1FAIpQLScyp_HvlkEBG-Qo89Xpa4jIw2beQHJ4OVsyci8rzZMsTEuFlQ/viewform",
+      nameEntry:  "entry.617733330",   // campo "nombre"
+      emailEntry: "entry.480580768",   // campo "correo"
+      fixed: { "entry.1682451547": "Otro" }  // tercer campo (opción "Otro"), fijo para que el envío no se trabe
+    },
+    // Link "Agregar al calendario" (Google Calendar template). Opcional.
+    calendarUrl: "",
+    // Perfil de la serie que se ve en binder:
+    profile: {
+      name: "Swipe Right",
+      chip: "S1",
+      location: "En cines · Una sola noche",
+      bio: "Crimen, amor tóxico y una huida de Ohio a Tokio a Colombia. Toda la temporada 1 en pantalla gigante, por una sola noche. Desliza a la derecha si te atreves a acompañarnos.",
+      interests: ["Premiere", "Pantalla gigante", "Crimen & romance", "100% IA", "Dead Camera Studios"],
+      // Slots de key art (placeholder). Reemplaza cada uno por una imagen cuando quieras.
+      photos: [
+        { label: "Key art 01", grad: "linear-gradient(145deg,#ff5864,#fd267a)" },
+        { label: "Key art 02", grad: "linear-gradient(145deg,#ff9a3d,#ff5864)" },
+        { label: "Key art 03", grad: "linear-gradient(160deg,#7b2ff7,#fd267a)" },
+        { label: "Key art 04", grad: "linear-gradient(150deg,#141925,#ff5864)" }
+      ]
+    }
+  };
+
+  /* ---------- state ---------- */
+  var guest = { name: "", email: "", photo: null };
+  var photoIndex = 0;
+  var accepted = false;
+
+  /* Guest's answers as form fields. */
+  function formParams(){
+    var f = CONFIG.form, p = new URLSearchParams();
+    if(f.nameEntry)  p.append(f.nameEntry, guest.name || "");
+    if(f.emailEntry) p.append(f.emailEntry, guest.email || "");
+    if(f.fixed){ Object.keys(f.fixed).forEach(function(k){ p.append(k, f.fixed[k]); }); }
+    return p;
+  }
+
+  /* Google Form URL pre-filled with the guest's data — only used as a fallback if the silent send fails. */
+  function formUrl(){
+    var f = CONFIG.form;
+    if(!f || !f.base) return "";
+    var sep = f.base.indexOf("?") >= 0 ? "&" : "?";
+    return f.base + sep + "usp=pp_url&" + formParams().toString();
+  }
+
+  /* Send the RSVP straight to the Google Form's response endpoint, in the background.
+     no-cors means we can't read Google's reply; a network error is the only failure we can see. */
+  var rsvp = "idle"; // idle | sent | failed
+  function submitRSVP(){
+    var f = CONFIG.form;
+    if(!f || !f.base){ rsvp = "sent"; return; }
+    var action = f.base.replace(/\/viewform.*$/, "/formResponse");
+    try{
+      fetch(action, { method:"POST", mode:"no-cors", body: formParams() })
+        .then(function(){ rsvp = "sent"; })
+        .catch(function(){ rsvp = "failed"; });
+    }catch(_){ rsvp = "failed"; }
+  }
+
+  var $ = function(s, r){ return (r||document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+
+  /* ---------- screen router ---------- */
+  function show(id){
+    $$(".screen").forEach(function(s){ s.classList.toggle("active", s.id===id); });
+    var active = $("#"+id);
+    if(active){ active.scrollTop = 0; var sc = $(".scroll",active); if(sc) sc.scrollTop=0; }
+  }
+  $$("[data-back]").forEach(function(b){ b.addEventListener("click", function(){ show(b.getAttribute("data-back")); }); });
+
+  /* ============================================================
+     SPLASH
+     ============================================================ */
+  $("#go-create").addEventListener("click", function(){ show("create"); $("#name-input").focus(); });
+
+  /* ============================================================
+     CREATE PROFILE
+     ============================================================ */
+  var nameInput = $("#name-input");
+  var emailInput = $("#email-input");
+  var goDiscover = $("#go-discover");
+  function validEmail(s){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s); }
+  function checkCreate(){
+    guest.name = nameInput.value.trim();
+    guest.email = emailInput.value.trim();
+    goDiscover.disabled = !(guest.name.length >= 2 && validEmail(guest.email));
+  }
+  nameInput.addEventListener("input", checkCreate);
+  emailInput.addEventListener("input", checkCreate);
+  nameInput.addEventListener("keydown", function(e){ if(e.key==="Enter") emailInput.focus(); });
+  emailInput.addEventListener("keydown", function(e){ if(e.key==="Enter" && !goDiscover.disabled) goDiscover.click(); });
+
+  var photoInput = $("#photo-input");
+  photoInput.addEventListener("change", function(){
+    var f = photoInput.files && photoInput.files[0];
+    if(!f) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      guest.photo = ev.target.result;
+      var img = $("#avatar-img");
+      img.src = guest.photo; img.hidden = false;
+      $("#avatar-ph").hidden = true;
+    };
+    reader.readAsDataURL(f);
+  });
+
+  goDiscover.addEventListener("click", function(){ buildProfile(); show("discover"); });
+
+  /* ============================================================
+     DISCOVER — build the SR profile card
+     ============================================================ */
+  function buildProfile(){
+    var p = CONFIG.profile;
+    $("#sr-name").textContent = p.name;
+    $("#sr-chip").textContent = p.chip;
+    $("#sr-loc").textContent = p.location;
+    $("#sr-bio").textContent = p.bio;
+
+    var pills = $("#sr-pills"); pills.innerHTML = "";
+    p.interests.forEach(function(t){
+      var s = document.createElement("span"); s.className="pill"; s.textContent=t; pills.appendChild(s);
+    });
+
+    var photos = $("#photos"); photos.innerHTML = "";
+    var bars = $("#bars-top"); bars.innerHTML = "";
+    p.photos.forEach(function(ph, i){
+      var el = document.createElement("div");
+      el.className = "photo" + (i===0 ? " show" : "");
+      if(ph.img){
+        el.innerHTML = '<div class="art"><img src="'+ph.img+'" alt="" style="width:100%;height:100%;object-fit:cover"></div><div class="scrim"></div>';
+      } else {
+        el.innerHTML =
+          '<div class="art" style="background:'+ph.grad+'"></div>'+
+          '<div class="ka">'+
+            '<div class="srword">SWIPE<br>RIGHT<small>SERIE · IA</small></div>'+
+            '<div class="slot">'+ph.label+' · reemplazar</div>'+
+          '</div>'+
+          '<div class="scrim"></div>';
+      }
+      photos.appendChild(el);
+      var bar = document.createElement("i"); if(i===0) bar.className="on"; bars.appendChild(bar);
+    });
+    photoIndex = 0;
+  }
+
+  function setPhoto(i){
+    var ph = $$(".photo"); if(!ph.length) return;
+    photoIndex = (i + ph.length) % ph.length;
+    ph.forEach(function(el,idx){ el.classList.toggle("show", idx===photoIndex); });
+    $$("#bars-top i").forEach(function(b,idx){ b.classList.toggle("on", idx===photoIndex); });
+  }
+
+  /* ---------- toast ---------- */
+  var toastTimer;
+  function toast(msg){
+    var t = $("#toast"); t.textContent = msg; t.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2200);
+  }
+
+  /* ============================================================
+     SWIPE mechanics
+     ============================================================ */
+  var card = $("#card");
+  var deck = $("#deck");
+  var dragging=false, startX=0, startY=0, dx=0, dy=0, moved=false, pid=null;
+  var THRESH = 110;
+
+  function onDown(e){
+    if(accepted) return;
+    if(e.target.closest(".tapzone")) { /* allow tap handling but still track */ }
+    dragging=true; moved=false;
+    startX = e.clientX; startY = e.clientY; dx=0; dy=0;
+    pid = e.pointerId;
+    card.classList.add("dragging"); card.classList.remove("reset");
+    try{ card.setPointerCapture(pid); }catch(_){}
+  }
+  function onMove(e){
+    if(!dragging) return;
+    dx = e.clientX - startX; dy = e.clientY - startY;
+    if(Math.abs(dx)>6 || Math.abs(dy)>6) moved=true;
+    var rot = dx/18;
+    card.style.transform = "translate("+dx+"px,"+(dy*0.25)+"px) rotate("+rot+"deg)";
+    var likeP = Math.max(0, Math.min(1, dx/THRESH));
+    var nopeP = Math.max(0, Math.min(1, -dx/THRESH));
+    $("#stamp-like").style.opacity = likeP;
+    $("#stamp-nope").style.opacity = nopeP;
+  }
+  function onUp(e){
+    if(!dragging) return;
+    dragging=false; card.classList.remove("dragging");
+    try{ card.releasePointerCapture(pid); }catch(_){}
+    // tap (no real move) → cycle photos
+    if(!moved){
+      var zone = e.target.closest(".tapzone");
+      if(zone){ setPhoto(photoIndex + parseInt(zone.getAttribute("data-tap"),10)); }
+      springBack();
+      return;
+    }
+    if(dx > THRESH){ fly(1); accept(); }
+    else if(dx < -THRESH){ springBack(); nudge(); }
+    else { springBack(); }
+  }
+  function springBack(){
+    card.classList.add("reset");
+    card.style.transform = "";
+    $("#stamp-like").style.opacity=0; $("#stamp-nope").style.opacity=0;
+  }
+  function fly(dir){
+    card.classList.remove("reset"); card.classList.add("fly");
+    var w = (deck.offsetWidth||400) + 220;
+    card.style.transform = "translate("+(dir*w)+"px,-40px) rotate("+(dir*22)+"deg)";
+    card.style.opacity = 0;
+  }
+
+  card.addEventListener("pointerdown", onDown);
+  card.addEventListener("pointermove", onMove);
+  card.addEventListener("pointerup", onUp);
+  card.addEventListener("pointercancel", onUp);
+
+  /* "you can't say no to swipe right" */
+  var nudges = [
+    "A SWIPE RIGHT no se le dice que no 😏",
+    "¿Seguro? La pantalla gigante te espera…",
+    "Nadie hace nope a una premiere. Desliza a la derecha →"
+  ];
+  var nudgeI = 0;
+  function nudge(){ toast(nudges[nudgeI % nudges.length]); nudgeI++; }
+
+  /* ---------- action buttons ---------- */
+  $("#act-like").addEventListener("click", function(){ if(accepted) return; fly(1); accept(); });
+  $("#act-star").addEventListener("click", function(){ if(accepted) return; toast("💫 Super like — ¡te esperamos!"); fly(1); accept(); });
+  $("#act-nope").addEventListener("click", function(){ if(accepted) return; nudge(); });
+
+  function accept(){
+    if(accepted) return;
+    accepted = true;
+    submitRSVP();
+    // fill match screen avatars
+    var you = $("#match-you");
+    if(guest.photo){ you.innerHTML = '<img src="'+guest.photo+'" alt="">'; }
+    $("#match-name").textContent = guest.name || "crack";
+    setTimeout(function(){ show("match"); }, 480);
+  }
+
+  $("#go-details").addEventListener("click", function(){ buildDetails(); show("details"); });
+
+  /* ============================================================
+     DETAILS
+     ============================================================ */
+  function val(v){ return (v && String(v).trim()) ? String(v) : null; }
+  function buildDetails(){
+    var e = CONFIG.event;
+    var rows = [
+      { ic:"📅", k:"Fecha",     v: val(e.date),    todo:"Fecha por confirmar" },
+      { ic:"🕗", k:"Hora",      v: val(e.time),    todo:"Hora por confirmar" },
+      { ic:"🎟️", k:"Lugar",     v: val(e.venue),   todo:"Cine por confirmar" },
+      { ic:"📍", k:"Dirección", v: val(e.address), todo:"Dirección por confirmar" },
+      { ic:"🌆", k:"Ciudad",    v: val(e.city),    todo:"Ciudad por confirmar" }
+    ];
+    if(val(e.dress)) rows.push({ ic:"👗", k:"Código", v: val(e.dress) });
+    var host = $("#detail-rows"); host.innerHTML="";
+    rows.forEach(function(r){
+      var div = document.createElement("div"); div.className="row";
+      div.innerHTML = '<span class="ic">'+r.ic+'</span><div style="min-width:0"><div class="k">'+r.k+'</div>'+
+        (r.v ? '<div class="v">'+escapeHtml(r.v)+'</div>' : '<div class="v todo">'+r.todo+'</div>')+'</div>';
+      host.appendChild(div);
+    });
+  }
+
+  $("#go-confirm").addEventListener("click", function(){ buildDone(); show("done"); });
+
+  /* ============================================================
+     DONE
+     ============================================================ */
+  function buildDone(){
+    $("#done-name").textContent = guest.name || "Invitado";
+    var av = $("#done-av");
+    if(guest.photo){ av.innerHTML = '<img src="'+guest.photo+'" alt="">'; }
+    var e = CONFIG.event;
+    var when = [val(e.date), val(e.time)].filter(Boolean).join(" · ") || "Fecha y hora por confirmar";
+    var where = [val(e.venue), val(e.city)].filter(Boolean).join(" · ") || "Sede por confirmar";
+    // Only if the background send failed (e.g. no signal): offer the pre-filled form as a backup.
+    var url = rsvp === "failed" ? formUrl() : "";
+
+    var st = $("#done-status");
+    st.textContent = url ? "● Falta un paso: toca Enviar en el formulario" : "● Confirmado para SWIPE RIGHT";
+    st.style.color = url ? "var(--star-1)" : "var(--like-2)";
+    if(url){
+      $("#done-title").textContent = "¡Casi listo!";
+      $("#done-sub").innerHTML = "No pudimos guardar tu lugar automáticamente. Abre tu formulario <b>ya lleno</b> y toca <b>Enviar</b>.";
+    }
+
+    $("#done-detail").innerHTML =
+      '<b>Evento:</b> Premiere SWIPE RIGHT<br>'+
+      '<b>Cuándo:</b> '+escapeHtml(when)+'<br>'+
+      '<b>Dónde:</b> '+escapeHtml(where)+'<br>'+
+      '<b>A nombre de:</b> '+escapeHtml(guest.name || "")+' · '+escapeHtml(guest.email || "");
+
+    var cta = $("#done-cta"); cta.innerHTML="";
+    if(url){
+      var af = document.createElement("a"); af.className="btn"; af.href=url;
+      af.target="_blank"; af.rel="noopener"; af.textContent="Abrir mi formulario (ya lleno)";
+      cta.appendChild(af);
+    }
+    if(val(CONFIG.calendarUrl)){
+      var a = document.createElement("a"); a.className="btn"+(url?" outline":""); a.href=CONFIG.calendarUrl;
+      a.target="_blank"; a.rel="noopener"; a.textContent="📆 Agregar al calendario";
+      cta.appendChild(a);
+    }
+    if(!cta.children.length){
+      var b = document.createElement("button"); b.className="btn ghost"; b.textContent="Listo";
+      b.addEventListener("click", function(){ toast("¡Nos vemos en la premiere! 🎬"); });
+      cta.appendChild(b);
+    }
+  }
+
+  $("#copy-btn").addEventListener("click", function(){
+    var e = CONFIG.event;
+    var txt = "Confirmo asistencia a la premiere de SWIPE RIGHT.\n"+
+      "Nombre: "+(guest.name||"")+"\n"+
+      "Correo: "+(guest.email||"")+"\n"+
+      "Evento: "+[val(e.date),val(e.time),val(e.venue),val(e.city)].filter(Boolean).join(" · ");
+    var btn = $("#copy-btn");
+    function ok(){ btn.textContent="✅ Copiado"; setTimeout(function(){ btn.innerHTML="📋 Copiar mis datos"; }, 1800); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok).catch(function(){ legacyCopy(txt, ok); });
+    } else { legacyCopy(txt, ok); }
+  });
+  function legacyCopy(txt, ok){
+    try{
+      var ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0";
+      document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); ok();
+    }catch(_){ toast("Copia manual: "+txt.slice(0,40)+"…"); }
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
